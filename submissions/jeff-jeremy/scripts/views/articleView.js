@@ -14,6 +14,7 @@
 
   // COMMENT: What does this method do?  What is it's execution path?
   articleView.populateFilters = function() {
+    //
     var options,
       template = Handlebars.compile($('#option-template').text());
 
@@ -119,6 +120,8 @@
 
   // COMMENT: What does this method do?  What is it's execution path?
   articleView.index = function(articles) {
+    //This method gets called in the default page route callback chain. It then removes all articles from the
+    //article ID. And then iterates through the articles and renders each article to the #articles id.
     $('#articles').show().siblings().hide();
 
     $('#articles article').remove();
@@ -128,6 +131,7 @@
 
     articleView.populateFilters();
     // COMMENT: What does this method do?  What is it's execution path?
+    //
     articleView.handleFilters();
 
     // DONE: Replace setTeasers with just the truncation logic, if needed:
