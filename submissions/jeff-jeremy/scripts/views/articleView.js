@@ -14,13 +14,17 @@
 
   // COMMENT: What does this method do?  What is it's execution path?
   articleView.populateFilters = function() {
-    //
+    //Create an options variable that's equal to nothing for now,
+    // and a template variable that compiles #options-template for all authors.
     var options,
       template = Handlebars.compile($('#option-template').text());
 
     // Example of using model method with FP, synchronous approach:
     // This method is dependant on info being in the DOM. Only authors of shown articles are loaded.
     options = Article.allAuthors().map(function(author) { return template({val: author}); });
+    //The options variable executes the Article.allAuthors() method and the Article.allAuthors method returns an array of each unique author.
+    //The map method creates an array of the authors with their articles.
+    //The if statement appends the unique author to the '#author-filter option'.
     if ($('#author-filter option').length < 2) { // Prevent duplication
       $('#author-filter').append(options);
     };
@@ -39,6 +43,7 @@
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
+  //This function handles the change in category or author with client side routing based on REGEX expressions.
   articleView.handleFilters = function() {
     $('#filters').one('change', 'select', function() {
       resource = this.id.replace('-filter', '');
@@ -131,6 +136,8 @@
 
     articleView.populateFilters();
     // COMMENT: What does this method do?  What is it's execution path?
+    //This method appends all of the unique authors and categories within the Articles.all array.
+
     //
     articleView.handleFilters();
 
